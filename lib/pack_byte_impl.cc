@@ -40,10 +40,12 @@ namespace gr {
          */
         pack_byte_impl::pack_byte_impl(bool msb,std::string tag_name)
                 : gr::block("pack_byte",
-                            gr::io_signature::make(1, 1, sizeof(gr.sizeof_char)),
-                            gr::io_signature::make(1, 1, sizeof(gr.sizeof_char)))
+                            gr::io_signature::make(1, 1, sizeof(uint8_t)),
+                            gr::io_signature::make(1, 1, sizeof(uint8_t)))
         {
-            d_tag_key = tag_name;
+            d_tag_key = pmt::string_to_symbol(tag_name);
+            buffer=0;
+            bit_index=0;
         }
 
         /*
@@ -66,18 +68,50 @@ namespace gr {
                                       gr_vector_void_star &output_items)
         {
             const uint8_t *in = (const uint8_t *) input_items[0];
+            uint8_t *out = (uint8_t *) output_items[0];
 
             // Variables declaration
-            unsigned n_bytes_available, n_bits_available, tag_offset_rel,n_bytes_left, n_bits_to_copy, n_bits_left;
             uint64_t nitemsRead = this->nitems_read(0);
+            unsigned n_in = ninput_items[0];
+            uint8_t sample;
+            unsigned sample_index;
+            uint64_t out_index=0;
+            uint64_t next_tag=noutput_items;
 
             // Getting tags
             std::vector<tag_t> tags;
             this->get_tags_in_range(tags,0,nitemsRead,nitemsRead+noutput_items, d_tag_key);
+            std::vector<tag_t>::iterator tag = tags.begin();
+            if(tag!=tags.end()){
+                next_tag=(*tag).offset - nitemsRead;
+            }
 
 
+            for(sample_index=0;sample_index<n_in;sample_index++){
+                sample=in[sample_index]>0;
+                if (next_tag == sample_index){
+                    bit_index=0;
+                    tag++;
+                    if(tag!=tags.end()){
+                        next_tag=(*tag).offset - nitemsRead;
+                    }
+                    else{
+                        next_tag=noutput_items;
+                    }
+                }
+                buffer |= sample << bit_index;
+                bit_index++;
+                if(bit_index>=8){
+                    bit_index=0;
+                    out[out_index] = buffer;
+                    out_index++;
+                    buffer=0;
+                }
+            }
+
+            this->consume_each(n_in);
             // Tell runtime system how many output items we produced.
-            return noutput_items;
+            return out_index;
         }
 
     } /* namespace numeric */

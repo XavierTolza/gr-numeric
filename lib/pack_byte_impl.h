@@ -30,7 +30,8 @@ namespace gr {
         {
         private:
             // Nothing to declare in this block.
-            std::string d_tag_key;
+            pmt::pmt_t d_tag_key;
+            uint8_t buffer, bit_index;
 
         public:
             pack_byte_impl(bool msb,std::string tag_name);
