@@ -46,6 +46,7 @@ namespace gr {
             d_tag_key = pmt::string_to_symbol(tag_name);
             buffer=0;
             bit_index=0;
+            d_msb=msb;
         }
 
         /*
@@ -99,7 +100,12 @@ namespace gr {
                         next_tag=noutput_items;
                     }
                 }
-                buffer |= sample << bit_index;
+                if(d_msb){
+                    buffer |= sample << (7-bit_index);
+                }
+                else{
+                    buffer |= sample << bit_index;
+                }
                 bit_index++;
                 if(bit_index>=8){
                     bit_index=0;

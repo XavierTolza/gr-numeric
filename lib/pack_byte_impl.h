@@ -32,6 +32,7 @@ namespace gr {
             // Nothing to declare in this block.
             pmt::pmt_t d_tag_key;
             uint8_t buffer, bit_index;
+            bool d_msb;
 
         public:
             pack_byte_impl(bool msb,std::string tag_name);
