@@ -19,5 +19,6 @@
 # Boston, MA 02110-1301, USA.
 
 install(FILES
-    numeric_pack_byte.xml DESTINATION share/gnuradio/grc/blocks
+    numeric_pack_byte.xml
+    numeric_print_ascii.xml DESTINATION share/gnuradio/grc/blocks
 )

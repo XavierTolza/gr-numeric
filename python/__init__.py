@@ -31,4 +31,5 @@ except ImportError:
 	pass
 
 # import any pure python here
+from print_ascii import print_ascii
 #
