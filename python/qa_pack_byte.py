@@ -5,7 +5,7 @@ from gnuradio import blocks
 import numeric.numeric_swig as numeric
 import pmt
 
-from python.helpers import start_block
+from helpers import start_block
 
 
 class qa_pack_byte(gr_unittest.TestCase):
@@ -15,16 +15,16 @@ class qa_pack_byte(gr_unittest.TestCase):
     def tearDown(self):
         self.tb = None
 
-    def tag(self, offset, value):
+    def tag(self, offset, value, name):
         res = gr.tag_t()
         res.offset = offset
-        res.key = pmt.to_pmt("yolo")
+        res.key = pmt.to_pmt(name)
         res.value = pmt.to_pmt(value)
         return res
 
     def test_001_t(self):
         tags = [
-            self.tag(2, "tag")
+            self.tag(2, 0, "tag")
         ]
         src = blocks.vector_source_b([0, 1, 1, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0],
                                      tags=tags, repeat=False)
@@ -35,6 +35,10 @@ class qa_pack_byte(gr_unittest.TestCase):
         start_block(self.tb, 0.01)
 
         res = snk.data()
+        tags = snk.tags()
+        print "Ntags: %i :" % len(tags)
+        for tag in tags:
+            print "   - %s" % tag.key
         res = struct.pack("B"*len(res),*res).encode("hex")
         print res
         # check data

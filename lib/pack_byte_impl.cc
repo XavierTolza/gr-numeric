@@ -46,6 +46,7 @@ namespace gr {
             d_tag_key = pmt::string_to_symbol(tag_name);
             buffer=0;
             bit_index=0;
+            d_msb=msb;
         }
 
         /*
@@ -80,17 +81,17 @@ namespace gr {
 
             // Getting tags
             std::vector<tag_t> tags;
-            this->get_tags_in_range(tags,0,nitemsRead,nitemsRead+noutput_items, d_tag_key);
+            this->get_tags_in_window(tags,0,0,n_in, d_tag_key);
             std::vector<tag_t>::iterator tag = tags.begin();
             if(tag!=tags.end()){
                 next_tag=(*tag).offset - nitemsRead;
             }
 
-
             for(sample_index=0;sample_index<n_in;sample_index++){
                 sample=in[sample_index]>0;
                 if (next_tag == sample_index){
                     bit_index=0;
+                    buffer=0;
                     tag++;
                     if(tag!=tags.end()){
                         next_tag=(*tag).offset - nitemsRead;
@@ -99,7 +100,12 @@ namespace gr {
                         next_tag=noutput_items;
                     }
                 }
-                buffer |= sample << bit_index;
+                if(d_msb){
+                    buffer |= sample << (7-bit_index);
+                }
+                else{
+                    buffer |= sample << bit_index;
+                }
                 bit_index++;
                 if(bit_index>=8){
                     bit_index=0;
