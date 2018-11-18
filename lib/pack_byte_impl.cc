@@ -81,11 +81,12 @@ namespace gr {
 
             // Getting tags
             std::vector<tag_t> tags;
-            this->get_tags_in_range(tags,0,nitemsRead,nitemsRead+noutput_items, d_tag_key);
+            this->get_tags_in_window(tags,0,0,n_in, d_tag_key);
             std::vector<tag_t>::iterator tag = tags.begin();
             if(tag!=tags.end()){
                 next_tag=(*tag).offset - nitemsRead;
             }
+            std::cout << "Nin = " << n_in << "  Nout: " << noutput_items << "  ntags: " << tags.size()<<std::endl;
 
 
             for(sample_index=0;sample_index<n_in;sample_index++){
