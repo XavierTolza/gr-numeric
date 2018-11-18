@@ -86,13 +86,12 @@ namespace gr {
             if(tag!=tags.end()){
                 next_tag=(*tag).offset - nitemsRead;
             }
-            std::cout << "Nin = " << n_in << "  Nout: " << noutput_items << "  ntags: " << tags.size()<<std::endl;
-
 
             for(sample_index=0;sample_index<n_in;sample_index++){
                 sample=in[sample_index]>0;
                 if (next_tag == sample_index){
                     bit_index=0;
+                    buffer=0;
                     tag++;
                     if(tag!=tags.end()){
                         next_tag=(*tag).offset - nitemsRead;
