@@ -38,7 +38,7 @@ class qa_pack_byte(gr_unittest.TestCase):
         tags = snk.tags()
         print "Ntags: %i :" % len(tags)
         for tag in tags:
-            print "   - %s" %s tag.key
+            print "   - %s" % tag.key
         res = struct.pack("B"*len(res),*res).encode("hex")
         print res
         # check data
