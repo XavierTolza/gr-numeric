@@ -18,7 +18,7 @@ class qa_pack_byte(gr_unittest.TestCase):
     def tag(self, offset, value, name):
         res = gr.tag_t()
         res.offset = offset
-        res.key = pmt.to_pmt("yolo")
+        res.key = pmt.to_pmt(name)
         res.value = pmt.to_pmt(value)
         return res
 
@@ -35,6 +35,10 @@ class qa_pack_byte(gr_unittest.TestCase):
         start_block(self.tb, 0.01)
 
         res = snk.data()
+        tags = snk.tags()
+        print "Ntags: %i :" % len(tags)
+        for tag in tags:
+            print "   - %s" %s tag.key
         res = struct.pack("B"*len(res),*res).encode("hex")
         print res
         # check data
