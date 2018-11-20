@@ -4,7 +4,7 @@
   <key>numeric_pack_byte</key>
   <category>[numeric]</category>
   <import>import numeric</import>
-  <make>numeric.pack_byte($msb, $tag_name)</make>
+  <make>numeric.pack_byte($msb, $tag)</make>
   <!-- Make one 'param' node for every Parameter you want settable from the GUI.
        Sub-nodes:
        * name
