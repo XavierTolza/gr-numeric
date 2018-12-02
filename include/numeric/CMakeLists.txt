@@ -23,5 +23,6 @@
 ########################################################################
 install(FILES
     api.h
-    pack_byte.h DESTINATION include/numeric
+    pack_byte.h
+    peak_tagger.h DESTINATION include/numeric
 )

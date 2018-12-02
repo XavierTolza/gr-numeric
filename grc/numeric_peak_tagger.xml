@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<block>
+  <name>Peak tagger</name>
+  <key>numeric_peak_tagger</key>
+  <category>[numeric]</category>
+  <import>import numeric</import>
+  <import>import pmt</import>
+  <make>numeric
+    .peak_tagger($tag_name, $forward.value, pmt.to_pmt($additional_dict))</make>
+
+  <!--PARAMETERS-->
+  <param>
+    <name>Tag name</name>
+    <key>tag_name</key>
+    <value>"peak"</value>
+    <type>string</type>
+  </param>
+
+  <param>
+    <name>Forward Tags</name>
+    <key>forward</key>
+    <type>enum</type>
+    <option>
+      <name>Yes</name>
+      <key>yes</key>
+      <opt>value:True</opt>
+    </option>
+    <option>
+      <name>No</name>
+      <key>no</key>
+      <opt>value:False</opt>
+    </option>
+  </param>
+
+  <param>
+    <name>Additional data</name>
+    <key>additional_dict</key>
+    <value>{}</value>
+  </param>
+
+  <!--INPUTS-->
+  <sink>
+    <name>peak_in</name>
+    <type>float</type>
+  </sink>
+
+  <sink>
+    <name>trig_lvl</name>
+    <type>float</type>
+  </sink>
+
+  <!--OUTPUTS-->
+  <source>
+    <name>out</name>
+    <type>float</type>
+    <vlen>1</vlen>
+  </source>
+
+  <!--DEBUG OUTPUT-->
+  <!--<source>-->
+  <!--<name>out</name>-->
+  <!--<type>byte</type>-->
+  <!--</source>-->
+</block>

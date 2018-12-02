@@ -20,5 +20,6 @@
 
 install(FILES
     numeric_pack_byte.xml
-    numeric_print_ascii.xml DESTINATION share/gnuradio/grc/blocks
+    numeric_print_ascii.xml
+    numeric_peak_tagger.xml DESTINATION share/gnuradio/grc/blocks
 )
