@@ -5,8 +5,7 @@
   <category>[numeric]</category>
   <import>import numeric</import>
   <import>import pmt</import>
-  <make>numeric
-    .peak_tagger($tag_name, $forward.value, pmt.to_pmt($additional_dict))</make>
+  <make>numeric.peak_tagger($tag_name, $forward.value, pmt.to_pmt($additional_dict))</make>
 
   <!--PARAMETERS-->
   <param>

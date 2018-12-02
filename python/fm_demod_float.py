@@ -16,7 +16,7 @@ from gnuradio.filter import firdes
 import math
 
 
-class FM_demod_float(gr.hier_block2):
+class fm_demod_float(gr.hier_block2):
 
     def __init__(self, delta_freq=500, freq=5000, samp_rate=32000):
         gr.hier_block2.__init__(

@@ -10,6 +10,7 @@
 %{
 #include "numeric/pack_byte.h"
 #include "numeric/peak_tagger.h"
+#include "numeric/synchronized_decimator.h"
 %}
 
 
@@ -17,3 +18,5 @@
 GR_SWIG_BLOCK_MAGIC2(numeric, pack_byte);
 %include "numeric/peak_tagger.h"
 GR_SWIG_BLOCK_MAGIC2(numeric, peak_tagger);
+%include "numeric/synchronized_decimator.h"
+GR_SWIG_BLOCK_MAGIC2(numeric, synchronized_decimator);
