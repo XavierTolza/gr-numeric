@@ -29,7 +29,7 @@ namespace gr {
   namespace numeric {
 
       synchronized_decimator::sptr
-      synchronized_decimator::make(unsigned char decimation_ratio, char* tag_name,
+      synchronized_decimator::make(unsigned decimation_ratio, char* tag_name,
                                    uint8_t item_size, bool propagate_tags, bool tag_value_must_be_true)
       {
           return gnuradio::get_initial_sptr
@@ -40,7 +40,7 @@ namespace gr {
       /*
        * The private constructor
        */
-      synchronized_decimator_impl::synchronized_decimator_impl(unsigned char decimation_ratio, char* tag_name,
+      synchronized_decimator_impl::synchronized_decimator_impl(unsigned decimation_ratio, char* tag_name,
                                                                uint8_t item_size, bool propagate_tags,
                                                                bool tag_value_must_be_true)
               : gr::block("synchronized_decimator",
@@ -85,7 +85,7 @@ namespace gr {
           std::vector<tag_t> tags;
           std::vector<tag_t>::iterator tag_iterator;
           bool tags_in_packet;
-          uint8_t phase;
+          unsigned phase;
           std::string tag_key;
           bool tag_value;
 

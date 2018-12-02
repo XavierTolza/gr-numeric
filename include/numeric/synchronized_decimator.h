@@ -48,7 +48,7 @@ namespace gr {
          * class. FFLY::synchronized_decimator::make is the public interface for
          * creating new instances.
          */
-        static sptr make(unsigned char decimation_ratio, char *tag_name,
+        static sptr make(unsigned decimation_ratio, char *tag_name,
                          uint8_t item_size, bool propagate_tags = false, bool tag_value_must_be_true = false);
     };
 

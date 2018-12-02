@@ -31,15 +31,15 @@ namespace gr {
 
         class synchronized_decimator_impl : public synchronized_decimator {
         private:
-            uint8_t d_decim_ratio;
+            unsigned d_decim_ratio;
             char *d_tag_name;
-            uint8_t d_selected_phase;
+            unsigned d_selected_phase;
             uint8_t d_item_size;
             bool d_match_if_tag_true;
             bool d_propagate_tags;
 
         public:
-            synchronized_decimator_impl(unsigned char decimation_ratio, char *tag_name,
+            synchronized_decimator_impl(unsigned decimation_ratio, char *tag_name,
                                         uint8_t item_size, bool propagate_tags, bool tag_value_must_be_true);
 
             ~synchronized_decimator_impl();
