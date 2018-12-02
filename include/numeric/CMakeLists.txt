@@ -23,5 +23,7 @@
 ########################################################################
 install(FILES
     api.h
-    pack_byte.h DESTINATION include/numeric
+    pack_byte.h
+    peak_tagger.h
+    synchronized_decimator.h DESTINATION include/numeric
 )

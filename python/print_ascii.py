@@ -28,18 +28,23 @@ class print_ascii(gr.sync_block):
     docstring for block print_ascii
     """
 
-    def __init__(self, encode_hex=False):
+    def __init__(self, encode_hex=False, print_character=None):
         gr.sync_block.__init__(self,
                                name="print_ascii",
                                in_sig=[numpy.uint8],
                                out_sig=None)
 
+        self.print_character = print_character
         self.encode_hex = encode_hex
+        self.data = ""
 
     def work(self, input_items, output_items):
         in0 = input_items[0]
         data = struct.pack("B" * len(in0), *in0)
         if self.encode_hex:
             data = data.encode("hex")
-        print data
+        self.data += data
+        if self.print_character is None or self.print_character in self.data:
+            print self.data
+            self.data = ""
         return len(input_items[0])

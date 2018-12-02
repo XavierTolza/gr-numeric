@@ -28,6 +28,9 @@ link_directories(${Boost_LIBRARY_DIRS})
 
 list(APPEND numeric_sources
     pack_byte_impl.cc
+    peak_tagger_impl.cc
+    time_tracker.cpp
+    synchronized_decimator_impl.cc
 )
 
 set(numeric_sources "${numeric_sources}" PARENT_SCOPE)

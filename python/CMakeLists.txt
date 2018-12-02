@@ -32,7 +32,8 @@ endif()
 GR_PYTHON_INSTALL(
     FILES
     __init__.py
-    print_ascii.py DESTINATION ${GR_PYTHON_DIR}/numeric
+    print_ascii.py
+    fm_demod_float.py DESTINATION ${GR_PYTHON_DIR}/numeric
 )
 
 ########################################################################
@@ -44,3 +45,5 @@ set(GR_TEST_TARGET_DEPS gnuradio-numeric)
 set(GR_TEST_PYTHON_DIRS ${CMAKE_BINARY_DIR}/swig)
 GR_ADD_TEST(qa_pack_byte ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_pack_byte.py)
 GR_ADD_TEST(qa_print_ascii ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_print_ascii.py)
+GR_ADD_TEST(qa_peak_tagger ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_peak_tagger.py)
+GR_ADD_TEST(qa_synchronized_decimator ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_synchronized_decimator.py)

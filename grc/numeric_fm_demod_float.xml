@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<block>
+  <name>FM demod float</name>
+  <key>numeric_fm_demod_float</key>
+  <category>[numeric]</category>
+  <import>import numeric</import>
+  <make>numeric.fm_demod_float(
+    delta_freq=$delta_freq,
+    freq=$freq,
+    samp_rate=$samp_rate,
+    )</make>
+
+  <callback>set_delta_freq($delta_freq)</callback>
+  <callback>set_freq($freq)</callback>
+  <callback>set_samp_rate($samp_rate)</callback>
+  <param>
+    <name>delta_freq</name>
+    <key>delta_freq</key>
+    <value>500</value>
+    <type>raw</type>
+    <hide>none</hide>
+  </param>
+  <param>
+    <name>freq</name>
+    <key>freq</key>
+    <value>5000</value>
+    <type>raw</type>
+    <hide>none</hide>
+  </param>
+  <param>
+    <name>samp_rate</name>
+    <key>samp_rate</key>
+    <value>32000</value>
+    <type>raw</type>
+    <hide>none</hide>
+  </param>
+  <sink>
+    <name>in</name>
+    <type>float</type>
+    <vlen>1</vlen>
+  </sink>
+  <source>
+    <name>out</name>
+    <type>float</type>
+    <vlen>1</vlen>
+  </source>
+</block>

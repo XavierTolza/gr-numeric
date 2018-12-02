@@ -32,4 +32,5 @@ except ImportError:
 
 # import any pure python here
 from print_ascii import print_ascii
+from fm_demod_float import fm_demod_float
 #

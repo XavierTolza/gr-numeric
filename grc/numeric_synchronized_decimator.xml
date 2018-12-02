@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+<block>
+  <name>Synchronized decimator</name>
+  <key>numeric_synchronized_decimator</key>
+  <category>[numeric]</category>
+  <import>import numeric</import>
+  <make>numeric.synchronized_decimator($decimation_ratio, $tag_name, $type.size, $propagate_tags.value, $check_tag_value.value)</make>
+
+  <param>
+    <name>Type</name>
+    <key>type</key>
+    <type>enum</type>
+    <option>
+      <name>Complex</name>
+      <key>complex</key>
+      <opt>size:gr.sizeof_gr_complex</opt>
+    </option>
+    <option>
+      <name>Float</name>
+      <key>float</key>
+      <opt>size:gr.sizeof_float</opt>
+    </option>
+    <option>
+      <name>Int</name>
+      <key>int</key>
+      <opt>size:gr.sizeof_int</opt>
+    </option>
+    <option>
+      <name>Short</name>
+      <key>short</key>
+      <opt>size:gr.sizeof_short</opt>
+    </option>
+    <option>
+      <name>Byte</name>
+      <key>byte</key>
+      <opt>size:gr.sizeof_char</opt>
+    </option>
+  </param>
+
+  <param>
+    <name>Decimation ratio</name>
+    <key>decimation_ratio</key>
+    <type>int</type>
+  </param>
+
+  <param>
+    <name>Tag Name</name>
+    <key>tag_name</key>
+    <value>"burst"</value>
+    <type>string</type>
+  </param>
+
+  <param>
+    <name>Vector length</name>
+    <key>vlen</key>
+    <value>1</value>
+    <type>int</type>
+  </param>
+
+  <param>
+    <name>Propagate Tags</name>
+    <key>propagate_tags</key>
+    <type>enum</type>
+    <option>
+      <name>Yes</name>
+      <key>yes</key>
+      <opt>value:True</opt>
+    </option>
+    <option>
+      <name>No</name>
+      <key>no</key>
+      <opt>value:False</opt>
+    </option>
+  </param>
+
+  <param>
+    <name>Check tag value</name>
+    <key>check_tag_value</key>
+    <type>enum</type>
+    <option>
+      <name>Yes</name>
+      <key>yes</key>
+      <opt>value:True</opt>
+    </option>
+    <option>
+      <name>No</name>
+      <key>no</key>
+      <opt>value:False</opt>
+    </option>
+  </param>
+
+
+  <!--IO-->
+  <sink>
+    <name>in</name>
+    <type>$type</type>
+    <vlen>$vlen</vlen>
+  </sink>
+
+  <source>
+    <name>out</name>
+    <type>$type</type>
+    <vlen>$vlen</vlen>
+  </source>
+</block>
