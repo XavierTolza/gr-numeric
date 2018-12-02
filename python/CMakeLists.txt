@@ -32,7 +32,8 @@ endif()
 GR_PYTHON_INSTALL(
     FILES
     __init__.py
-    print_ascii.py DESTINATION ${GR_PYTHON_DIR}/numeric
+    print_ascii.py
+    fm_demod_float.py DESTINATION ${GR_PYTHON_DIR}/numeric
 )
 
 ########################################################################
