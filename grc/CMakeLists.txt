@@ -22,6 +22,6 @@ install(FILES
     numeric_pack_byte.xml
     numeric_print_ascii.xml
     numeric_peak_tagger.xml
-    numeric_fm_demod_float.xml
+    #numeric_fm_demod_float.xml
     numeric_synchronized_decimator.xml DESTINATION share/gnuradio/grc/blocks
 )
