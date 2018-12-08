@@ -78,14 +78,14 @@
     <key>check_tag_value</key>
     <type>enum</type>
     <option>
-      <name>Yes</name>
-      <key>yes</key>
-      <opt>value:True</opt>
-    </option>
-    <option>
       <name>No</name>
       <key>no</key>
       <opt>value:False</opt>
+    </option>
+    <option>
+      <name>Yes</name>
+      <key>yes</key>
+      <opt>value:True</opt>
     </option>
   </param>
 
