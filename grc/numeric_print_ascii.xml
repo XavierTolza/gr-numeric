@@ -4,7 +4,7 @@
   <key>numeric_print_ascii</key>
   <category>[numeric]</category>
   <import>import numeric</import>
-  <make>numeric.print_ascii()</make>
+  <make>numeric.print_ascii($hex.value)</make>
   <!-- Make one 'param' node for every Parameter you want settable from the GUI.
        Sub-nodes:
        * name
@@ -17,10 +17,12 @@
     <option>
       <name>No</name>
       <key>False</key>
+      <opt>value:False</opt>
     </option>
     <option>
       <name>Yes</name>
       <key>True</key>
+      <opt>value:True</opt>
     </option>
   </param>
 

@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <block>
-  <name>tag_copier</name>
+  <name>Tag Copier</name>
   <key>numeric_tag_copier</key>
   <category>[numeric]</category>
   <import>import numeric</import>
@@ -37,6 +37,22 @@
   </param>
 
   <param>
+    <name>Output only first stream</name>
+    <key>only_first</key>
+    <type>enum</type>
+    <option>
+      <name>Yes</name>
+      <key>yes</key>
+      <opt>value:True</opt>
+    </option>
+    <option>
+      <name>No</name>
+      <key>no</key>
+      <opt>value:False</opt>
+    </option>
+  </param>
+
+  <param>
     <name>N streams</name>
     <key>ninput</key>
     <value>2</value>
@@ -62,6 +78,6 @@
   <source>
     <name>out</name>
     <type>$type</type>
-    <nports>$ninput</nports>
+    <nports>$ninput if not $only_first else 1</nports>
   </source>
 </block>
