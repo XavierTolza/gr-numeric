@@ -24,5 +24,6 @@ install(FILES
     numeric_peak_tagger.xml
     #numeric_fm_demod_float.xml
     numeric_synchronized_decimator.xml
-    numeric_tag_copier.xml DESTINATION share/gnuradio/grc/blocks
+    numeric_tag_copier.xml
+    numeric_pack_byte_python.xml DESTINATION share/gnuradio/grc/blocks
 )
