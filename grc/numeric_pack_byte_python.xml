@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<block>
+  <name>Pack Byte (Python)</name>
+  <key>numeric_pack_byte_python</key>
+  <category>[numeric]</category>
+  <import>import numeric</import>
+  <make>numeric.pack_byte_python($msb, $tag)</make>
+  <!-- Make one 'param' node for every Parameter you want settable from the GUI.
+       Sub-nodes:
+       * name
+       * key (makes the value accessible as $keyname, e.g. in the make node)
+       * type -->
+  <param>
+    <name>Endianness</name>
+    <key>msb</key>
+    <type>enum</type>
+    <option>
+      <name>MSB</name>
+      <key>True</key>
+    </option>
+    <option>
+      <name>LSB</name>
+      <key>False</key>
+    </option>
+  </param>
+
+  <param>
+    <name>Tag key</name>
+    <key>tag</key>
+    <type>string</type>
+  </param>
+
+  <!-- Make one 'sink' node per input. Sub-nodes:
+       * name (an identifier for the GUI)
+       * type
+       * vlen
+       * optional (set to 1 for optional inputs) -->
+  <sink>
+    <name>in</name>
+    <type>byte</type>
+  </sink>
+
+  <!-- Make one 'source' node per output. Sub-nodes:
+       * name (an identifier for the GUI)
+       * type
+       * vlen
+       * optional (set to 1 for optional inputs) -->
+  <source>
+    <name>out</name>
+    <type>byte</type>
+  </source>
+</block>
