@@ -25,6 +25,7 @@ from gnuradio import blocks
 from pack_byte_python import pack_byte_python as pack_byte
 from lib import start_block
 import pmt
+import numpy as np
 
 
 class qa_pack_byte_python(gr_unittest.TestCase):
@@ -45,7 +46,7 @@ class qa_pack_byte_python(gr_unittest.TestCase):
         tags = [
             self.tag(2, 0, "tag")
         ]
-        src = blocks.vector_source_b([0, 1, 1, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0],
+        src = blocks.vector_source_b([0, 1, 1, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                                      tags=tags, repeat=False)
         blk = pack_byte(True, "tag")
         snk = blocks.vector_sink_b()
@@ -54,14 +55,8 @@ class qa_pack_byte_python(gr_unittest.TestCase):
         start_block(self.tb, 0.01)
 
         res = snk.data()
-        tags = snk.tags()
-        print "Ntags: %i :" % len(tags)
-        for tag in tags:
-            print "   - %s" % tag.key
-        res = struct.pack("B"*len(res),*res).encode("hex")
         print res
-        # check data
-
+        assert np.all(np.equal(res, (172, 220, 0)))
 
 if __name__ == '__main__':
     gr_unittest.run(qa_pack_byte_python, "qa_pack_byte_python.xml")
