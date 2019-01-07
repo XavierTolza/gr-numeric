@@ -48,7 +48,7 @@ class qa_pack_byte_python(gr_unittest.TestCase):
         ]
         src = blocks.vector_source_b([0, 1, 1, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                                      tags=tags, repeat=False)
-        blk = pack_byte(True, "tag")
+        blk = pack_byte(True, "tag",1)
         snk = blocks.vector_sink_b()
 
         self.tb.connect(src, blk, snk)
@@ -56,7 +56,7 @@ class qa_pack_byte_python(gr_unittest.TestCase):
 
         res = snk.data()
         print res
-        assert np.all(np.equal(res, (172, 220, 0)))
+        assert np.all(np.equal(res, (220, 0)))
 
 if __name__ == '__main__':
     gr_unittest.run(qa_pack_byte_python, "qa_pack_byte_python.xml")

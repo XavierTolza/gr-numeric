@@ -4,7 +4,7 @@
   <key>numeric_pack_byte_python</key>
   <category>[numeric]</category>
   <import>import numeric</import>
-  <make>numeric.pack_byte_python($msb, $tag)</make>
+  <make>numeric.pack_byte_python($msb, $tag, $skip)</make>
   <!-- Make one 'param' node for every Parameter you want settable from the GUI.
        Sub-nodes:
        * name
@@ -28,6 +28,13 @@
     <name>Tag key</name>
     <key>tag</key>
     <type>string</type>
+  </param>
+
+  <param>
+    <name>Skip first N bytes</name>
+    <key>skip</key>
+    <value>0</value>
+    <type>int</type>
   </param>
 
   <!-- Make one 'sink' node per input. Sub-nodes:

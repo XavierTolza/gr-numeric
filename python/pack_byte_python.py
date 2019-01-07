@@ -9,7 +9,7 @@ class pack_byte_python(gr.basic_block):
     docstring for block pack_byte_python
     """
 
-    def __init__(self, msb, string_tag_name):
+    def __init__(self, msb, string_tag_name, skip_n_bytes=0):
         gr.basic_block.__init__(self,
                                 name="pack_byte_python",
                                 in_sig=[numpy.uint8],
@@ -18,6 +18,7 @@ class pack_byte_python(gr.basic_block):
         self.string_tag_name = string_tag_name
         self.phase = 0
         self.counter = 0
+        self.skip_n_bytes = skip_n_bytes
 
     def forecast(self, noutput_items, ninput_items_required):
         # setup size of input_items[i] for work call
@@ -39,25 +40,31 @@ class pack_byte_python(gr.basic_block):
         nread = self.nitems_read(0)
         # print(dict(ninputs=len(input_items[0]),noutputs=len(output_items[0]),nread=nread,ntags=len(tags)))
         tag, tags = self.pop_tag(tags)
+        n_skip=0
 
         for sample_index, sample in enumerate(input_items[0]):
             if tag and (tag.offset - nread) == sample_index:
                 self.phase = 0
                 self.counter=0
+                n_skip = int(self.skip_n_bytes*8)
                 tag, tags = self.pop_tag(tags)
 
-            if self.msb:
-                mul = 2 ** (7 - self.phase)
+            if n_skip:
+                n_skip -= 1
             else:
-                mul = 2 ** self.phase
-            # print(dict(sample=sample,sample_index=sample_index,mul=mul,phase=self.phase,noutputted=noutputted,counter=self.counter))
-            self.counter += (sample != 0) * mul
-            self.phase += 1
-            if self.phase == 8:
-                self.phase = 0
-                output_items[0][noutputted] = self.counter
-                noutputted += 1
-                self.counter = 0
+
+                if self.msb:
+                    mul = 2 ** (7 - self.phase)
+                else:
+                    mul = 2 ** self.phase
+                # print(dict(sample=sample,sample_index=sample_index,mul=mul,phase=self.phase,noutputted=noutputted,counter=self.counter))
+                self.counter += (sample != 0) * mul
+                self.phase += 1
+                if self.phase == 8:
+                    self.phase = 0
+                    output_items[0][noutputted] = self.counter
+                    noutputted += 1
+                    self.counter = 0
 
         self.consume(0, len(input_items[0]))
         # self.consume_each(len(input_items[0]))
